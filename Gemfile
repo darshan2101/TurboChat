@@ -74,3 +74,7 @@ end
 gem "devise", "= 4.8.1"
 
 gem "mysql2", "~> 0.5.5"
+
+gem "image_processing", "~> 1.12"
+
+gem "mini_magick", "~> 4.12"

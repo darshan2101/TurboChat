@@ -3,13 +3,14 @@
   <p>Chatrooms + Direct Messages</p>
   <p>Rails 7 Demo</p>
   <% if current_user %>
-    <%= link_to "Start Chatting", rooms_path, turbo:'false' %>
-    <%= link_to "Edit Account", edit_user_registration_path %>
-    <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-    <%#= image_tag(current_user.pfp_thumbnail) if current_user.pfp.attached?%>
+    <%= image_tag(current_user.chat_avatar) if current_user.avatar.attached?%>
+    <%= link_to "Start Chatting", rooms_path, turbo:'false', class:'btn btn-dark' %>
+    <br>
+    <%= link_to "Edit Account", edit_user_registration_path, class:'btn btn-secondary' %> |
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, class:'btn btn-danger' %>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Login", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path, class:'btn btn-secondary' %>
+    <%= link_to "Login", new_user_session_path, class:'btn btn-primary' %>
   <% end %>
 </div>
  
