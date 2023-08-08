@@ -1,14 +1,12 @@
 class TurboDeviseController < ApplicationController
   class Responder < ActionController::Responder
     def to_turbo_stream
-      rendering_options = options.merge(formats: :html)
-      controller.render(rendering_options)
-    rescue ActionView::MissingTemplate => error
+      controller.render(options.merge(formats: :html))
+    rescue ActionView::MissingTemplate => e
       if get?
-        raise error
+        raise e
       elsif has_errors? && default_action
-        rendering_options = rendering_options.merge(formats: :html, status: :unprocessable_entity)
-        controller.render(rendering_options)
+        render rendering_options.merge(formats: :html, status: :unprocessable_entity)
       else
         redirect_to navigation_location
       end

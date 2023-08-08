@@ -3,17 +3,25 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   connect() {
     console.log("Connected");
-    const messages = document.getElementById("messages");
-    messages.addEventListener("DOMNodeInserted", this.resetScroll);
-    this.resetScroll(messages);
+    this.messages = document.getElementById("messages");
+
+    this.mutationObserver = new MutationObserver(this.handleMutation);
+    this.mutationObserver.observe(this.messages, { childList: true });
+
+    this.resetScroll();
   }
 
   disconnect() {
     console.log("Disconnected");
-    messages.removeEventListener("DOMNodeInserted", this.resetScroll);
+    this.mutationObserver.disconnect();
   }
 
+  handleMutation = () => {
+    this.resetScroll();
+  };
+
   resetScroll() {
-    messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+    this.messages.scrollTop =
+      this.messages.scrollHeight - this.messages.clientHeight;
   }
 }
