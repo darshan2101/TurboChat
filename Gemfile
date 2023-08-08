@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "devise", "= 4.8.1"
+
+gem "mysql2", "~> 0.5.5"
