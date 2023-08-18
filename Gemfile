@@ -71,7 +71,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem "devise", "= 4.8.1"
+gem "devise"
 
 gem "mysql2", "~> 0.5.5"
 

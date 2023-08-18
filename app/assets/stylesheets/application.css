@@ -30,6 +30,7 @@ body {
   height: calc(100vh - 150px);
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: 4.35px;
 }
 
 #room_container {
@@ -101,4 +102,26 @@ body {
   margin-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 0px;
+  font-size: 9.3px;
+}
+.icon-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: grey;
+  border: 2px solid white;
+  bottom: 10px;
+  right: 10px;
+  position: absolute;
+}
+.new_room_btn {
+  border-radius: 50%;
+  width: 45px;
+  background-color: darkslategrey;
+  color: white;
 }
