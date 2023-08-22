@@ -23,4 +23,5 @@ class Room < ApplicationRecord
     # Participant.where(user_id: user.id, room_id: room.id).exists?
   end
 
+  # test comment
 end
