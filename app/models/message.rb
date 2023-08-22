@@ -11,8 +11,7 @@ class Message < ApplicationRecord
 
     if target.image?
       target.variant(resize_to_limit: [150,250]).processed
-    end
-    if target.video?
+    elsif target.video?
       target.variant(resize_to_limit: [150,250]).processed
     end
   end

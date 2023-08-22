@@ -78,3 +78,5 @@ gem "mysql2", "~> 0.5.5"
 gem "image_processing", "~> 1.12"
 
 gem "mini_magick", "~> 4.12"
+
+gem "pagy", "~> 6.0"
