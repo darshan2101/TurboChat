@@ -1,35 +1,30 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  initialize() {
-    this.resetScrollWithoutThreshold(messages);
-  }
-  connect() {
-    console.log("Connected");
-    this.messages = document.getElementById("messages");
-
-    this.mutationObserver = new MutationObserver(this.handleMutation);
-    this.mutationObserver.observe(this.messages, { childList: true });
-  }
-
-  disconnect() {
-    console.log("Disconnected");
-    this.mutationObserver.disconnect();
-  }
-
-  handleMutation = () => {
-    this.resetScroll();
-  };
-
-  resetScroll() {
-    const bottomOfScroll = messages.scrollHeight - messages.clientHeight;
-    const upperScrollThreshold = bottomOfScroll - 500;
-    if (this.messages.scrollTop - upperScrollThreshold) {
-      this.resetScrollWithoutThreshold(this.messages);
-    }
-  }
-
-  resetScrollWithoutThreshold(messages) {
-    messages.scrollTop = messages.scrollHeight - messages.clientHeight;
-  }
+	initialize() {
+		this.resetScrollWithoutThreshold(messages);
+	}
+	/** On start */
+	connect() {
+		console.log("Connected scroll");
+		const messages = document.getElementById("messages");
+		messages.addEventListener("DOMNodeInserted", this.resetScroll);
+		this.resetScrollWithoutThreshold(messages);
+	}
+	/** On stop */
+	disconnect() {
+		console.log("Disconnected");
+	}
+	/** Custom function */
+	resetScroll() {
+		const bottomOfScroll = messages.scrollHeight - messages.clientHeight;
+		const upperScrollThreshold = bottomOfScroll - 100;
+		// Scroll down if we're not within the threshold
+		if (messages.scrollTop > upperScrollThreshold) {
+			messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+		}
+	}
+	resetScrollWithoutThreshold(messages) {
+		messages.scrollTop = messages.scrollHeight - messages.clientHeight;
+	}
 }

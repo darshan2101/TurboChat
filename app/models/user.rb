@@ -6,12 +6,18 @@ class User < ApplicationRecord
 
   scope :all_except, ->(user) { where.not(id: user) }
   after_create_commit { broadcast_append_to 'users' }
-  after_update_commit { broadcast_update } 
+  after_update_commit { broadcast_update }
   has_many :messages
   has_one_attached :avatar
+  has_many :joinables ,:dependent => :destroy
+  has_many :joined_rooms, through: :joinables, source: :room
+
   after_commit :add_default_avatar, on: %i[create update]
-  
+
   enum status: %i[offline away online]
+  enum role: %i[user admin]
+
+  after_initialize :set_default_role if :new_record?
 
   def user_name
     self.email.split('@')[0].capitalize
@@ -48,5 +54,9 @@ class User < ApplicationRecord
       filename: 'default_profile.jpg',
       content_type: 'image/jpg'
     )
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 end
