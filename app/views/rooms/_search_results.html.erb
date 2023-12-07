@@ -1,0 +1,5 @@
+<% @rooms.each do |room| %>
+    <li class="list-group-item d-flex align-items-center justify-content-between user_list_item <%= isActive %>">
+        <%= link_to room.name, room_path(id: room.id, name, name_search: params[:name_search]), class:'ms-2 me-auto username', data: {turbo: "false"}%>
+    </li>
+<% end %>
