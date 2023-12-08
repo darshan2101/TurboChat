@@ -26,7 +26,7 @@
     <%= render 'rooms/search_form' %>
     <div id="rooms">
       <%#= render @rooms%>
-      <%= render @joined_rooms%>
+      <%= render 'rooms/rooms' ,rooms: @joined_rooms, user: current_user %>
     </div>
   </div>
   <div id="room_container"
