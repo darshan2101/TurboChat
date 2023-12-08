@@ -18,7 +18,7 @@ export default class extends Controller {
 	/** Custom function */
 	resetScroll() {
 		const bottomOfScroll = messages.scrollHeight - messages.clientHeight;
-		const upperScrollThreshold = bottomOfScroll - 100;
+		const upperScrollThreshold = bottomOfScroll - 500;
 		// Scroll down if we're not within the threshold
 		if (messages.scrollTop > upperScrollThreshold) {
 			messages.scrollTop = messages.scrollHeight - messages.clientHeight;
