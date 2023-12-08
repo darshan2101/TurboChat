@@ -2,7 +2,7 @@
 <div id="appearance_channel"></div>
 
 <div id="chatroom_container" class="row bg-dark text-light">
-  <div id="side_panel" class="col-lg-2 col-md-3 col-sm-4">
+  <div id="side_panel" class="col-md-3 col-sm-4">
     <li class="list-group-item d-flex align-items-center justify-content-between user_list_item">
       <div class="icon-container">
         <%= link_to image_tag(current_user.chat_avatar, class: 'chat_pfp'), current_user %>
@@ -26,11 +26,11 @@
     <%= render 'rooms/search_form' %>
     <div id="rooms">
       <%#= render @rooms%>
-      <%= render 'rooms/rooms' ,rooms: @joined_rooms, user: current_user %>
+      <%= render 'rooms/curr_rooms' ,rooms: @joined_rooms, user: current_user %>
     </div>
   </div>
   <div id="room_container"
-  class="col-lg-10 col-md-9 col-sm-8 bg-dark text-light">
+  class="col-md-9 col-sm-8 bg-dark text-light">
     <% if @active_room %>
       <div id="active_room">
         <h4 class="text-center"> <%= @user&.email || @active_room.name %> </h4>
