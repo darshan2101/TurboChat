@@ -73,11 +73,13 @@ body {
 }
 .user_list_item {
 	height: 55px;
+	padding: 5px !important;
+	margin-bottom: 1.2px !important;
 	background-color: #343a40 !important;
 }
 .room_list_item {
 	height: 55px;
-	padding: 15px;
+	padding: 15px !important;
 	background-color: #343a40 !important;
 	color: #fff;
 }
