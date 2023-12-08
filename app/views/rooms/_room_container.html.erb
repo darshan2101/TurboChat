@@ -1,7 +1,7 @@
 <li class="list-group-item room_list_item">
   <div class="row">
     <div class="col-12 d-flex align-items-center justify-content-between">
-      <%= link_to room.name, room_path(room, name_search: params[:name_search]), data: {turbo: "false"}, class: "ms-2 me-auto" %>
+      <%= link_to room.name.capitalize, room_path(room, name_search: params[:name_search]), data: {turbo: "false"}, class: "ms-2 me-auto" %>
       <%= render 'rooms/joinable_link', room: room %>
     </div>
   </div>
