@@ -1,0 +1,8 @@
+
+<% rooms.each do |room,index| %>
+	<% curr_room = room %>
+    <%= render 'rooms/room',
+    	room: curr_room, 
+    	last_message: room.latest_message,
+    user: user %>
+<% end %>
