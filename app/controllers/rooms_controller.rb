@@ -6,9 +6,10 @@ class RoomsController < ApplicationController
 	def index
 		@rooms = search_rooms
 		@joined_rooms = current_user.joined_rooms.order(last_message_at: :desc)
+		current_user.update(current_room: nil)
 		@users = User.all_except(current_user)
 		@room = Room.new
-
+		render 'index'
 	end
 
 	def create
@@ -22,6 +23,7 @@ class RoomsController < ApplicationController
 		@active_room = Room.find(params[:id]) # if params[:id].present?
 		@room = Room.new
 		@message = Message.new
+		current_user.update(current_room: @active_room)
 
 		pagy_messages = @active_room.messages.includes(:user).order(created_at: :desc)
 		@pagy, messages = pagy(pagy_messages, items: 8)
