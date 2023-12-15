@@ -35,17 +35,27 @@ class Room < ApplicationRecord
 
         return unless last_message
 
-        target = "room_#{id}_last_message"
+        room_target = "room_#{id}_last_message"
+        user_target = "user_#{id} user_last_message"
+        sender = Current.user.eql?(last_message.user) ? Current.user : last_message.user
 
-        broadcast_replace_to('rooms',
-                            target: target,
+        broadcast_update_to('rooms',
+                            target: room_target,
                             partial: 'rooms/last_message',
                             locals: {
                             room: self,
                             user: last_message.user,
                             last_message: last_message
                             })
+        broadcast_update_to('rooms',
+                            target: user_target,
+                            partial: 'users/last_message',
+                            locals: {
+                            room: self,
+                            user: last_message.user,
+                            last_message: last_message,
+                            sender: sender
+                            })
     end
 
-  # test comment
 end
